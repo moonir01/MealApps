@@ -1,0 +1,9 @@
+npm install expo-font
+npm install expo-app-loading
+npm install --save react-navigation
+npm cache clean --force
+https://reactnavigation.org/docs/3.x/getting-started
+expo install react-native-gesture-handler react-native-reanimated
+
+
+npm install --save react-navigation-stack
