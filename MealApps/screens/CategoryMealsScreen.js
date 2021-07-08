@@ -1,10 +1,15 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet,Platform } from 'react-native';
+import { CATEGORIES } from '../data/dummy-data';
+import Colors from '../constants/Colors';
 
 const CategoryMealScreen = props => {
+    const catId = props.navigation.getParam('categoryId');
+    const selectedCategory = CATEGORIES.find(cat => cat.id === catId);// find item id from dummy- data
     return (
         <View style={styles.screen}>
             <Text> The Categories Meal Screen !</Text>
+            <Text>{selectedCategory.title}</Text>
             <Button title="Go to Details " onPress={() => {
                 props.navigation.navigate({ routeName: 'MealDetail' });
                 //props.navigation.push('CategoryMeals');  ///Push user for relode samescreen for dropdown box etc and same screen with diffrent Content
@@ -16,6 +21,21 @@ const CategoryMealScreen = props => {
         </View>
     );
 };
+
+CategoryMealScreen.navigationOptions = navigationData => {
+    //console.log(navigationData);
+    const catId = navigationData.navigation.getParam('categoryId');
+    const selectedCategory = CATEGORIES.find(cat => cat.id === catId);// find item id from dummy- data
+
+    return {
+        headerTitle: selectedCategory.title,
+        headerStyle: {
+            backgroundColor: Platform.OS === 'android' ? Colors.PrimaryColor : ''
+        },
+        headerTintColor: Platform.OS === 'android' ? 'white' : Colors.PrimaryColor
+    };
+};
+
 const styles = StyleSheet.create({
     screen: {
         flex: 1,

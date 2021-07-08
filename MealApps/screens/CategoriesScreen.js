@@ -1,29 +1,62 @@
 import React from 'react';
-import { View, Text,Button, FlatList,StyleSheet } from 'react-native';
+import { View, Text, Button, FlatList, StyleSheet, TouchableOpacity, Platform } from 'react-native';
+import { CATEGORIES } from '../data/dummy-data';
+import Colors from '../constants/Colors';
+
 
 const CategoriesScreen = props => {
-   // console.log(props);
+    
+    // console.log(props);
+    const renderGridItem = itemData => {
+        return (
+            <TouchableOpacity
+                style={styles.gridItem}
+                onPress={() => {
+                    props.navigation.navigate({
+                        routeName: 'CategoryMeals',
+                        params: {
+                            categoryId: itemData.item.id// Passing item id
+                        }
+                    });
+                }}>
+                <View>
+                    <Text>{itemData.item.title}</Text>
+                </View>
+            </TouchableOpacity>
+        );
+    };
+
     return (
-        <View style={styles.screen}>
-            <Text> The Categories Screen  yes n</Text>
-            <Button title="Go to Meals " onPress={() => {
-                 props.navigation.navigate({routeName: 'CategoryMeals'});
-                 //props.navigation.replace('CategoryMeals');//// কোন ব্যাক বাটন থাকবেনা এবং কোন এনিমেশন ছারাই স্ক্রিন মোভ করবে লগিন স্ক্রিনের জন্য এটি ব্যাবহত হয়
-                //props.navigation.push('CategoryMeals');  ///Push user for relode samescreen for dropdown box etc and same screen with diffrent Content
-            }}/>
-        </View>
+        <FlatList 
+            keyExtractor={(item, index) => item.id}// Key Extractor no need for latest version for id
+            data={CATEGORIES}
+            renderItem={renderGridItem}
+            numColumns={2} />
     );
 };
-const styles = StyleSheet.create({ 
+
+CategoriesScreen.navigationOptions = {
+    headerTitle: 'Meal Categories',
+    headerStyle: {
+        backgroundColor: Platform.OS === 'android' ? Colors.PrimaryColor : ''
+    },
+    headerTintColor: Platform.OS === 'android' ? 'white' : Colors.PrimaryColor
+}
+const styles = StyleSheet.create({
     screen: {
-        flex: 1, 
+        flex: 1,
         justifyContent: 'center',
-        alignItems: 'center' 
+        alignItems: 'center'
+    },
+    gridItem: {
+        flex: 1,
+        margin: 15,
+        height: 150
     }
 });
 
 export default CategoriesScreen;
- 
+
 
 
 
