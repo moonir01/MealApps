@@ -36,7 +36,7 @@ const CategoriesScreen = props => {
 };
 
 CategoriesScreen.navigationOptions = {
-    headerTitle: 'Meal Categories'
+    //headerTitle: 'Meal Categories'
 }
 const styles = StyleSheet.create({
     screen: {
