@@ -1,44 +1,50 @@
-import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import { CATEGORIES } from '../data/dummy-data';
+import React from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+import { CATEGORIES, MEALS } from "../data/dummy-data";
 
-
-const CategoryMealScreen = props => {
-    const catId = props.navigation.getParam('categoryId');
-    const selectedCategory = CATEGORIES.find(cat => cat.id === catId);// find item id from dummy- data
+const CategoryMealScreen = (props) => {
+  const renderMealItem = (itemData) => {
     return (
-        <View style={styles.screen}>
-            <Text> The Categories Meal Screen !</Text>
-            <Text>{selectedCategory.title}</Text>
-            <Button title="Go to Details " onPress={() => {
-                props.navigation.navigate({ routeName: 'MealDetail' });
-                //props.navigation.push('CategoryMeals');  ///Push user for relode samescreen for dropdown box etc and same screen with diffrent Content
-            }} />
-            <Button title="Go Back" onPress={() => {
-                props.navigation.goBack();
-                //props.navigation.pop();////Alternative for go back
-            }} />
-        </View>
+      <View>
+        <Text>{itemData.item.title}</Text>
+      </View>
     );
+  };
+  const catId = props.navigation.getParam("categoryId");
+  //const selectedCategory = CATEGORIES.find(cat => cat.id === catId);// find item id from dummy- data
+
+  const displayedMeal = MEALS.filter(
+    (meal) => meal.categoryIds.indexOf(catId) >= 0
+  );
+
+  return (
+    <View style={styles.screen}>
+      <FlatList
+        data={displayedMeal}
+        keyExtractor={(item, index) => item.id}
+        renderItem={renderMealItem}
+      />
+    </View>
+  );
 };
 
-CategoryMealScreen.navigationOptions = navigationData => {
-    //console.log(navigationData);
-    const catId = navigationData.navigation.getParam('categoryId');
-    const selectedCategory = CATEGORIES.find(cat => cat.id === catId);// find item id from dummy- data
+CategoryMealScreen.navigationOptions = (navigationData) => {
+  //console.log(navigationData);
+  const catId = navigationData.navigation.getParam("categoryId");
+  const selectedCategory = CATEGORIES.find((cat) => cat.id === catId); // find item id from dummy- data
 
-    return {
-        headerTitle: selectedCategory.title,
-
-    };
+  return {
+    headerTitle: selectedCategory.title,
+  };
 };
 
 const styles = StyleSheet.create({
-    screen: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
+  screen: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
 
 export default CategoryMealScreen;
