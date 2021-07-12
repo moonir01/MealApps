@@ -29,7 +29,7 @@ const MealsNavigator = createStackNavigator(
         backgroundColor: Platform.OS === 'android' ? Colors.PrimaryColor : ''
       },
       headerTintColor: Platform.OS === 'android' ? 'white' : Colors.PrimaryColor,
-      headerTitle: 'A Screen'// defual header title
+     // headerTitle: 'A Screen'// defual header title
     }
 
   }
