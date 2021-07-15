@@ -8,3 +8,8 @@ expo install react-native-gesture-handler react-native-reanimated
 
 npm install --save react-navigation-stack
 npm install --save react-native-screens
+npm install npm start
+npm install --save react-navigation-header-buttons
+npm install --save@expo/vector-icons
+ npm install
+npm install react-navigation react-navigation-drawer react-navigation-header-buttons react-navigation-stack react-navigation-tabs
