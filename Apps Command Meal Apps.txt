@@ -12,17 +12,13 @@ npm install npm start
 npm install --save react-navigation-header-buttons
 npm add react-navigation-header-buttons
 npm install --save@expo/vector-icons
-https://github.com/vonovak/react-navigation-header-buttons#important-note
-
-
-
 
 npm install @react-navigation/native@next
+npm install @react-navigation/bottom-tabs
 
 
 
-
-
+https://github.com/vonovak/react-navigation-header-buttons#important-note
 
 
 
