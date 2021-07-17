@@ -12,9 +12,14 @@ npm install npm start
 npm install --save react-navigation-header-buttons
 npm add react-navigation-header-buttons
 npm install --save@expo/vector-icons
+npm install react-navigation-tabs
 
-npm install @react-navigation/native@next
-npm install @react-navigation/bottom-tabs
+
+npm install @react-navigation/native-- this command need only for bottom TAB and this is Navigation 5 Version another all component are Navigation 4 Version
+
+
+
+
 
 
 
@@ -22,8 +27,14 @@ https://github.com/vonovak/react-navigation-header-buttons#important-note
 
 
 
+//--navigation version 5
+npm install @react-navigation/native
+npm install @react-navigation/stack
+npm install @react-navigation/bottom-tabs
+
+npm uninstall @react-navigation/native
+npm uninstall @react-navigation/stack
+npm uninstall @react-navigation/bottom-tabs
 
 
-
-
-
+npm uninstall react-navigation

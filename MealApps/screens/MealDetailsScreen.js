@@ -29,7 +29,10 @@ MealDetailScreen.navigationOptions = (navigationData) => {
   const selectMeal = MEALS.find((meal) => meal.id === mealId);
   return {
     headerTitle: selectMeal.title,
-    headerRight: (
+    //headerRight: <Text>Helo244</Text>
+    headerRight:
+    
+    (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Favorite"
@@ -47,6 +50,17 @@ MealDetailScreen.navigationOptions = (navigationData) => {
         />
       </HeaderButtons>
     )
+
+
+    // () => (
+    //   <Button
+    //     onPress={() => alert('This is a button!')}
+    //     title="Info"
+    //     color='red'
+    //   />
+    // )
+
+
   };
 };
 
