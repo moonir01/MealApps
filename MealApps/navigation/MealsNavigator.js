@@ -1,9 +1,10 @@
 import React from "react";
-import { platform } from "react-native";
+import { Platform, platform } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from "@expo/vector-icons";
+import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 //import { NavigationContainer } from '@react-navigation/native';
 //import { createStackNavigator } from '@react-navigation/stack';
 //import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -41,41 +42,47 @@ const MealsNavigator = createStackNavigator(
   }
 );
 
+const tabScreenConfig = {
+  Meals: {
+    screen: MealsNavigator,
+    navigationOptions: {
+      tabBarIcon: (tabinfo) => {
+        return (
+          <Ionicons name="ios-restaurant" size={25} color={tabinfo.tintColor} />
+        );
+      },
+     
+    },
+  }, //copy setup from MealsNavigator
+  Favorites: {
+    screen: FavoritesScreen,
+    navigationOptions: {
+      tabBarLabel: "Favorites",
+      tabBarIcon: (tabinfo) => {
+        return <Ionicons name="ios-star" size={25} color={tabinfo.tintColor} />;
+      },
+      tabBarColor:Colors.accentColor
+    },
+   
+  }, // Call from favorit screen
+};
+
 //---------------Bottom TAB Navigator-------------------
 
-const MealFavTabNavigator = createBottomTabNavigator(
-  {
-    Meals: {
-      screen: MealsNavigator,
-      navigationOptions: {
-        tabBarIcon: (tabinfo) => {
-          return (
-            <Ionicons
-              name="ios-restaurant"
-              size={25}
-              color={tabinfo.tintColor}
-            />
-          );
-        },
-      },
-    }, //copy setup from MealsNavigator
-    Favorites: {
-      screen: FavoritesScreen,
-      navigationOptions: {
-        tabBarLabel: "Favorites",
-        tabBarIcon: (tabinfo) => {
-          return (
-            <Ionicons name="ios-star" size={25} color={tabinfo.tintColor} />
-          );
-        },
-      },
-    }, // Call from favorit screen
+const MealFavTabNavigator=
+Platform.OS==='android'
+ ? createMaterialBottomTabNavigator(tabScreenConfig,{
+   activeColor: 'white',
+   shifting: true,
+   barStyle:{
+     backgroundColor:Colors.PrimaryColor
+   }
+
+ })
+ :createBottomTabNavigator(tabScreenConfig, {
+  tabBarOptions: {
+    activeTintColor: Colors.accentColor,
   },
-  {
-    tabBarOptions: {
-      activeTintColor: Colors.accentColor,
-    },
-  }
-);
+});
 
 export default createAppContainer(MealFavTabNavigator); //MealsNavigator nested undwer  MealFavTabNavigator bcoz we can only use one root navigator in app container
