@@ -40,3 +40,14 @@ npm uninstall @react-navigation/bottom-tabs
 
 
 npm uninstall react-navigation
+
+
+
+
+After Download From Git
+git init
+git config user.name "moonir01"
+git config user.email "monirkhan37@outlook.com"
+git add *
+git commit -m "some init msg"
+If you swap [23] and 1, the config will 
