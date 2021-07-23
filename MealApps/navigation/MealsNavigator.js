@@ -12,7 +12,7 @@ import { createMaterialBottomTabNavigator } from "react-navigation-material-bott
 import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
 import MealDetailScreen from "../screens/MealDetailsScreen";
-import FavoritesScreen from "../screens/FiltersScreen";
+import FavoritesScreen from "../screens/FavoritesScreen";
 import Colors from "../constants/Colors";
 
 const defaultStackNavOptions= {
@@ -27,10 +27,10 @@ const defaultStackNavOptions= {
 const MealsNavigator = createStackNavigator(
   {
     Categories: {
-      screen: CategoriesScreen,
-      navigationOptions: {
-        headerTitle: "Meal Categories !!!",
-      },
+      screen: CategoriesScreen
+     // navigationOptions: {
+       // headerTitle: "Meal Categories !!!",
+      //},
     },
     CategoryMeals: {
       screen: CategoryMealsScreen,
@@ -45,7 +45,7 @@ const MealsNavigator = createStackNavigator(
 );
  const FavNavigator = createStackNavigator(
   {
-    Favorites: FavoritesScreen,
+    Favorites: FavoritesScreen, //Assign FavoritesScreen screen
     MealDetail: MealDetailScreen,
   },
   {
