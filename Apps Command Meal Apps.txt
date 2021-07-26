@@ -5,6 +5,7 @@ npm cache clean --force
 https://reactnavigation.org/docs/3.x/getting-started
 expo install react-native-gesture-handler react-native-reanimated
 
+npm install react-native-reanimated@1.13.1-- and run expo start --clear (this is down version but only it's run for this app version)
 
 npm install --save react-navigation-stack
 npm install --save react-native-screens
@@ -40,7 +41,7 @@ npm uninstall @react-navigation/bottom-tabs
 
 
 npm uninstall react-navigation
-
+https://github.com/siddhant235/MealsApp-
 
 
 

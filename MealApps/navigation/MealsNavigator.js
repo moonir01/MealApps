@@ -3,6 +3,9 @@ import { Platform, platform } from "react-native";
 import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
+
+import { createDrawerNavigator } from 'react-navigation-drawer';
+
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
 //import { NavigationContainer } from '@react-navigation/native';
@@ -13,6 +16,7 @@ import CategoriesScreen from "../screens/CategoriesScreen";
 import CategoryMealsScreen from "../screens/CategoryMealsScreen";
 import MealDetailScreen from "../screens/MealDetailsScreen";
 import FavoritesScreen from "../screens/FavoritesScreen";
+import FiltersScreen from "../screens/FiltersScreen";
 import Colors from "../constants/Colors";
 
 const defaultStackNavOptions= {
@@ -95,4 +99,13 @@ const MealFavTabNavigator =
         },
       });
 
-export default createAppContainer(MealFavTabNavigator); //MealsNavigator nested undwer  MealFavTabNavigator bcoz we can only use one root navigator in app container
+      const FilterStackNavigator= createStackNavigator({
+        Filters:FiltersScreen
+    })
+    
+    const MainNavigator=createDrawerNavigator({
+        MealsFavs:MealFavTabNavigator,
+        Filters:FilterStackNavigator
+    })
+    export default createAppContainer(MainNavigator);
+//export default createAppContainer(MealFavTabNavigator); //MealsNavigator nested undwer  MealFavTabNavigator bcoz we can only use one root navigator in app container
