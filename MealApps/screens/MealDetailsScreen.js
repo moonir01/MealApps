@@ -1,27 +1,64 @@
 import React from "react";
-import { View, Text, Button, StyleSheet } from "react-native";
+import {
+  ScrollView,
+  View,
+  Image,
+  Text,
+  Button,
+  StyleSheet,
+} from "react-native";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
-
-import { MEAL, MEALS } from "../data/dummy-data";
+import { MEALS } from "../data/dummy-data";
 import HeaderButton from "../components/HeaderButton";
+import DefaultText from "../components/DefaultText";
+
+const ListItem = props =>{
+//Props on Same Screen
+return(
+  <View style ={styles.ListItem}>
+    <DefaultText>{props.children}</DefaultText>
+  </View>
+);
+};
 
 const MealDetailScreen = (props) => {
   const mealId = props.navigation.getParam("mealId");
-  const selectMeal = MEALS.find((meal) => meal.id === mealId);
+  const selectedMeal = MEALS.find((meal) => meal.id === mealId);
   return (
-    <View style={styles.screen}>
-      <Text>{selectMeal.title}</Text>
-      <Text> The Meal Detail Screen !</Text>
-      <Button
-        title="Go Back to Cagegories "
-        onPress={() => {
-          //props.navigation.navigate({routeName: 'CategoryMeals'});
-          //props.navigation.push('CategoryMeals');  ///Push user for relode samescreen for dropdown box etc and same screen with diffrent Content
-          props.navigation.popToTop(); // For Back to main screen
-        }}
-      />
-    </View>
+    <ScrollView>
+      <Image source={{ uri: selectedMeal.imageUrl }} style={styles.image} />
+
+      <View style={styles.details}>
+        <DefaultText>{selectedMeal.duration}m</DefaultText>
+        <DefaultText>{selectedMeal.complexity}</DefaultText>
+        <DefaultText>{selectedMeal.affordability}</DefaultText>
+      </View>
+
+      
+      <Text style={styles.title}>Ingredients</Text>
+      {selectedMeal.ingredients.map((ingredient) => (
+        <ListItem Key={ingredient}>{ingredient}</ListItem>
+      ))}
+
+      <Text style={styles.title}>Steps</Text>
+      {selectedMeal.steps.map((step1) => (
+        <ListItem Key={step1}>{step1}</ListItem>
+      ))}
+
+      {/* <View style={styles.screen}>
+        <Text>{selectMeal.title}</Text>
+        <Text> The Meal Detail Screen !</Text>
+        <Button
+          title="Go Back to Cagegories "
+          onPress={() => {
+            //props.navigation.navigate({routeName: 'CategoryMeals'});
+            //props.navigation.push('CategoryMeals');  ///Push user for relode samescreen for dropdown box etc and same screen with diffrent Content
+            props.navigation.popToTop(); // For Back to main screen
+          }}
+        />
+      </View> */}
+    </ScrollView>
   );
 };
 MealDetailScreen.navigationOptions = (navigationData) => {
@@ -30,9 +67,7 @@ MealDetailScreen.navigationOptions = (navigationData) => {
   return {
     headerTitle: selectMeal.title,
     //headerRight: <Text>Helo244</Text>
-    headerRight:
-    
-    (
+    headerRight: (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Favorite"
@@ -41,10 +76,8 @@ MealDetailScreen.navigationOptions = (navigationData) => {
             console.log("Mark as favorite");
           }}
         />
-           
       </HeaderButtons>
-    )
-
+    ),
 
     // () => (
     //   <Button
@@ -53,17 +86,32 @@ MealDetailScreen.navigationOptions = (navigationData) => {
     //     color='red'
     //   />
     // )
-
-
   };
 };
 
 const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+  image: {
+    width: "100%",
+    height: 200,
   },
+  details: {
+    flexDirection: "row",
+    padding: 15,
+    justifyContent: "space-around",
+  },
+  title: {
+    fontFamily: "open-sans-bold",
+    fontSize: 22,
+    textAlign: "center",
+  },
+  ListItem:{
+    marginVertical:10,
+    marginHorizontal:20,
+    borderColor:'#ccc',
+    borderWidth:1,
+    padding :10
+
+  }
 });
 
 export default MealDetailScreen;
