@@ -4,7 +4,7 @@ import { createAppContainer } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { createBottomTabNavigator } from "react-navigation-tabs";
 
-import { createDrawerNavigator } from 'react-navigation-drawer';
+import { createDrawerNavigator } from "react-navigation-drawer";
 
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialBottomTabNavigator } from "react-navigation-material-bottom-tabs";
@@ -19,21 +19,20 @@ import FavoritesScreen from "../screens/FavoritesScreen";
 import FiltersScreen from "../screens/FiltersScreen";
 import Colors from "../constants/Colors";
 
-const defaultStackNavOptions= {
+const defaultStackNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? Colors.PrimaryColor : "",
   },
-  headerTintColor:
-    Platform.OS === "android" ? "white" : Colors.PrimaryColor,
+  headerTintColor: Platform.OS === "android" ? "white" : Colors.PrimaryColor,
   //headerTitle: 'A Screen'// defual header title
-}
+};
 
 const MealsNavigator = createStackNavigator(
   {
     Categories: {
-      screen: CategoriesScreen
-     // navigationOptions: {
-       // headerTitle: "Meal Categories !!!",
+      screen: CategoriesScreen,
+      // navigationOptions: {
+      // headerTitle: "Meal Categories !!!",
       //},
     },
     CategoryMeals: {
@@ -44,10 +43,10 @@ const MealsNavigator = createStackNavigator(
   {
     //mode:'modal',
     //initialRouteName:'MealDetail',
-    defaultNavigationOptions:defaultStackNavOptions
+    defaultNavigationOptions: defaultStackNavOptions,
   }
 );
- const FavNavigator = createStackNavigator(
+const FavNavigator = createStackNavigator(
   {
     Favorites: FavoritesScreen, //Assign FavoritesScreen screen
     MealDetail: MealDetailScreen,
@@ -55,7 +54,7 @@ const MealsNavigator = createStackNavigator(
   {
     //mode:'modal',
     //initialRouteName:'MealDetail',
-    defaultNavigationOptions: defaultStackNavOptions
+    defaultNavigationOptions: defaultStackNavOptions,
   }
 );
 
@@ -99,13 +98,36 @@ const MealFavTabNavigator =
         },
       });
 
-      const FilterStackNavigator= createStackNavigator({
-        Filters:FiltersScreen
-    })
-    
-    const MainNavigator=createDrawerNavigator({
-        MealsFavs:MealFavTabNavigator,
-        Filters:FilterStackNavigator
-    })
-    export default createAppContainer(MainNavigator);
+const FilterStackNavigator = createStackNavigator(
+  {
+    Filters: FiltersScreen,
+  },
+  {
+    //  navigationOptions:{
+    //   drawerLabel: 'Filters !!!!'
+    //},
+    defaultNavigationOptions: defaultStackNavOptions,
+  }
+);
+
+const MainNavigator = createDrawerNavigator(
+  {
+    MealsFavs: {
+      screen: MealFavTabNavigator,
+      navigationOptions: {
+        drawerLabel: "Meals..!",
+      },
+    },
+    Filters: FilterStackNavigator,
+  },
+  {
+    contentOptions: {
+      activeTintColor: Colors.accentColor,
+      labelStyle: {
+        fontFamily: "open=sans-bold",
+      },
+    },
+  }
+);
+export default createAppContainer(MainNavigator);
 //export default createAppContainer(MealFavTabNavigator); //MealsNavigator nested undwer  MealFavTabNavigator bcoz we can only use one root navigator in app container
