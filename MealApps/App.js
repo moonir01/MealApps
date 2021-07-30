@@ -1,31 +1,28 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import * as Font from 'expo-font';
-import AppLoading from 'expo-app-loading';
-import { enableScreens } from 'react-native-screens';
-import mealsReducer  from './store/reducers/meals';
-import { createStore , combineReducers} from 'redux';
-import { Provider } from 'react-redux';
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import * as Font from "expo-font";
+import AppLoading from "expo-app-loading";
+import { enableScreens } from "react-native-screens";
+import mealsReducer from "./store/reducers/meals";
+import { createStore, combineReducers } from "redux";
+import { Provider } from "react-redux";
 
-import MealsNavigator from './navigation/MealsNavigator';
-
+import MealsNavigator from "./navigation/MealsNavigator";
 
 enableScreens();
 
-const rootReducer= combineReducers({
-  meals: mealsReducer//meals is a key you can use any name 
+const rootReducer = combineReducers({
+  meals: mealsReducer, //meals is a key you can use any name
 });
-const store = createStore(rootReducer); 
-
+const store = createStore(rootReducer);
 
 const fetchFonts = () => {
   return Font.loadAsync({
-    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 };
 export default function App() {
-
   const [fontLoaded, setFontLoaded] = useState(false);
 
   if (!fontLoaded) {
@@ -39,12 +36,10 @@ export default function App() {
   }
 
   return (
-
-    <MealsNavigator></MealsNavigator>
-
+    <Provider store={store}>
+      <MealsNavigator></MealsNavigator>
+    </Provider>
   );
 }
 
-const styles = StyleSheet.create({
-
-});
+const styles = StyleSheet.create({});
