@@ -13,13 +13,13 @@ import { MEALS } from "../data/dummy-data";
 import HeaderButton from "../components/HeaderButton";
 import DefaultText from "../components/DefaultText";
 
-const ListItem = props =>{
-//Props on Same Screen
-return(
-  <View style ={styles.ListItem}>
-    <DefaultText>{props.children}</DefaultText>
-  </View>
-);
+const ListItem = (props) => {
+  //Props on Same Screen
+  return (
+    <View style={styles.ListItem}>
+      <DefaultText>{props.children}</DefaultText>
+    </View>
+  );
 };
 
 const MealDetailScreen = (props) => {
@@ -35,15 +35,14 @@ const MealDetailScreen = (props) => {
         <DefaultText>{selectedMeal.affordability}</DefaultText>
       </View>
 
-      
       <Text style={styles.title}>Ingredients</Text>
-      {selectedMeal.ingredients.map((ingredient) => (
-        <ListItem Key={ingredient}>{ingredient}</ListItem>
+      {selectedMeal.ingredients.map(ingredient => (
+        <ListItem key={ingredient}>{ingredient}</ListItem>
       ))}
 
       <Text style={styles.title}>Steps</Text>
-      {selectedMeal.steps.map((step1) => (
-        <ListItem Key={step1}>{step1}</ListItem>
+      {selectedMeal.steps.map((step) => (
+        <ListItem key={step}>{step}</ListItem>
       ))}
 
       {/* <View style={styles.screen}>
@@ -67,7 +66,7 @@ MealDetailScreen.navigationOptions = (navigationData) => {
   return {
     headerTitle: selectMeal.title,
     //headerRight: <Text>Helo244</Text>
-    headerRight: (
+    headerRight: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButton}>
         <Item
           title="Favorite"
@@ -104,14 +103,13 @@ const styles = StyleSheet.create({
     fontSize: 22,
     textAlign: "center",
   },
-  ListItem:{
-    marginVertical:10,
-    marginHorizontal:20,
-    borderColor:'#ccc',
-    borderWidth:1,
-    padding :10
-
-  }
+  ListItem: {
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    padding: 10,
+  },
 });
 
 export default MealDetailScreen;
