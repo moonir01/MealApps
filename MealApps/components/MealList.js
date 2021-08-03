@@ -16,8 +16,9 @@ const MealList = props => {
             onSelectMeal={() => {
               props.navigation.navigate({
                 routeName: "MealDetail",
-                params: {
+                params: {//to supply another screen
                   mealId: itemData.item.id,
+                  mealTitle:itemData.item.title
                 },
               });
             }}

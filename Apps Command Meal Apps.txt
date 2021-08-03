@@ -3,7 +3,7 @@ npm install expo-app-loading
 npm install --save react-navigation
 npm cache clean --force
 https://reactnavigation.org/docs/3.x/getting-started
-expo install react-native-gesture-handler react-native-reanimated
+--expo install react-native-gesture-handler react-native-reanimated
 
 npm install react-native-reanimated@1.13.1-- and run expo start --clear (this is down version but only it's run for this app version)
 
@@ -16,7 +16,7 @@ npm install --save@expo/vector-icons
 npm install react-navigation-tabs
 npm install --save react-navigation-material-bottom-tabs
 npm install --save react-native-paper
-
+npm install --save redux react-redux
 
 npm install @react-navigation/native-- this command need only for bottom TAB and this is Navigation 5 Version another all component are Navigation 4 Version
 

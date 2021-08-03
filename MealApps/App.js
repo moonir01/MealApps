@@ -12,7 +12,7 @@ import MealsNavigator from "./navigation/MealsNavigator";
 enableScreens();
 
 const rootReducer = combineReducers({
-  meals: mealsReducer, //meals is a key you can use any name
+  meals: mealsReducer, //meals is a key you can use any name and meals is an idetifair
 });
 const store = createStore(rootReducer);
 
